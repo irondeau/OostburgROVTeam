@@ -57,12 +57,16 @@ Windows 10 is the preferred operating system because it comes with the XBox driv
 Instead of repeating information already in nice tutorials, these links will help direct you to understanding the connection between Processing and Arduino and the XBox controller.
 
 To learn about the communication between Arduino and Processing:
+```
 https://learn.sparkfun.com/tutorials/connecting-arduino-to-processing
+```
 
 To learn about game control plus:
+```
 Tutorial 1: http://lagers.org.uk/gamecontrol/part1.html
 Tutorial 2: http://lagers.org.uk/gamecontrol/part2.html
 Tutorial 3: http://lagers.org.uk/gamecontrol/part3.html
+```
 
 If you have any questions feel free to email Isaiah Rondeau and he will be happy to help you out. You can email him at
 ### isaiahrondeau@gmail.com
