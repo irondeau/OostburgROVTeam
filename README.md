@@ -49,9 +49,8 @@ The first step of connecting the Arduino to an XBox controller is to download th
 ### Connecting an XBox Controller
 Connecting the XBox controller only works on a Windows machine (Microsoft designed XBox) and should be rather simple to set up. On Windows 7, connect the controller to the computer (with a USB receiver or a wired controller) and follow the steps here:
 
-```
-https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwip49b_t5bYAhWk3YMKHbJ0BjQQFggrMAE&url=https%3A%2F%2Fsupport.xbox.com%2Fen-US%2Fxbox-on-windows%2Faccessories%2Fxbox-controller-for-windows-setup&usg=AOvVaw3SSiLLrpKdW9eFdnR69qnE
-```
+`https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwip49b_t5bYAhWk3YMKHbJ0BjQQFggrMAE&url=https%3A%2F%2Fsupport.xbox.com%2Fen-US%2Fxbox-on-windows%2Faccessories%2Fxbox-controller-for-windows-setup&usg=AOvVaw3SSiLLrpKdW9eFdnR69qnE`
+
 
 Windows 10 is the preferred operating system because it comes with the XBox drivers already installed. Simply plug in the controller and test functionality.
 
