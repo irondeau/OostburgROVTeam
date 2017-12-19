@@ -18,7 +18,7 @@ Laptop -> USB-ethernet adapter -> ethernet cable -> USB-ethernet calbe -> USB ca
 It is possible to connect separate power to the Arduino through the power jack. The arduino takes 9-12V DC @ 2A which can be harnessed from the power connected to the ROV.
 
 ### Motor Driver Setup
-The motor drivers that were used on our ROV were bought from Pololu and can be found at `https://www.pololu.com/product/2992`. The drivers take in a PWM (pulse width modulation) signal from the Arduino and use it to determine the speed of the motor. This is an example of the Pololu G2 High-Power Motor Driver:
+The motor drivers that were used on our ROV were bought from Pololu and can be found at https://www.pololu.com/product/2992. The drivers take in a PWM (pulse width modulation) signal from the Arduino and use it to determine the speed of the motor. This is an example of the Pololu G2 High-Power Motor Driver:
 ```
 GND DIR PWM SLP FLT CS  3V3 VM 
 _|___|___|___|___|___|___|___|_
@@ -44,12 +44,14 @@ In order to connect the motor and power source, the four large connections must 
 The only necessary signal pins to use are the GND, DIR, PWM, and SLP pins. The GND pin on the motor driver connects to the Arduino's GND pin. The DIR pin connects to any output pin on the Arduino, and is used to change the direction of the motor between `HIGH` and `LOW`. The PWM pin on the motor driver must be connected to an Arduino pin with the symbol "~" next to the number or on the Arduino Mega with the pins that have a "PWM" label. The final pin that must be used, the SLP pin, must always have a `HIGH` state for the motor to run.
 
 ### Processing Setup
-The first step of connecting the Arduino to an XBox controller is to download the Processing software. You can find the download at `https://processing.org/download/`. Processing works on the three most common opperating systems: Windows, Linux, and Mac OS.
+The first step of connecting the Arduino to an XBox controller is to download the Processing software. You can find the download at https://processing.org/download/. Processing works on the three most common opperating systems: Windows, Linux, and Mac OS.
 
 ### Connecting an XBox Controller
 Connecting the XBox controller only works on a Windows machine (Microsoft designed XBox) and should be rather simple to set up. On Windows 7, connect the controller to the computer (with a USB receiver or a wired controller) and follow the steps here:
 
-`https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwip49b_t5bYAhWk3YMKHbJ0BjQQFggrMAE&url=https%3A%2F%2Fsupport.xbox.com%2Fen-US%2Fxbox-on-windows%2Faccessories%2Fxbox-controller-for-windows-setup&usg=AOvVaw3SSiLLrpKdW9eFdnR69qnE`
+```
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwip49b_t5bYAhWk3YMKHbJ0BjQQFggrMAE&url=https%3A%2F%2Fsupport.xbox.com%2Fen-US%2Fxbox-on-windows%2Faccessories%2Fxbox-controller-for-windows-setup&usg=AOvVaw3SSiLLrpKdW9eFdnR69qnE
+```
 
 Windows 10 is the preferred operating system because it comes with the XBox drivers already installed. Simply plug in the controller and test functionality.
 
@@ -57,7 +59,9 @@ Windows 10 is the preferred operating system because it comes with the XBox driv
 Instead of repeating information already in nice tutorials, these links will help direct you to understanding the connection between Processing and Arduino and the XBox controller.
 
 To learn about the communication between Arduino and Processing:
-`https://learn.sparkfun.com/tutorials/connecting-arduino-to-processing`
+```
+https://learn.sparkfun.com/tutorials/connecting-arduino-to-processing
+```
 
 To learn about game control plus:
 ```
