@@ -47,3 +47,22 @@ The only necessary signal pins to use are the GND, DIR, PWM, and SLP pins. The G
 The first step of connecting the Arduino to an XBox controller is to download the Processing software. You can find the download at https://processing.org/download/. Processing works on the three most common opperating systems: Windows, Linux, and Mac OS.
 
 ### Connecting an XBox Controller
+Connecting the XBox controller only works on a Windows machine (Microsoft designed XBox) and should be rather simple to set up. On Windows 7, connect the controller to the computer (with a USB receiver or a wired controller) and follow the steps here:
+
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwip49b_t5bYAhWk3YMKHbJ0BjQQFggrMAE&url=https%3A%2F%2Fsupport.xbox.com%2Fen-US%2Fxbox-on-windows%2Faccessories%2Fxbox-controller-for-windows-setup&usg=AOvVaw3SSiLLrpKdW9eFdnR69qnE
+
+Windows 10 is the preferred operating system because it comes with the XBox drivers already installed. Simply plug in the controller and test functionality.
+
+### Putting It All Together
+Instead of repeating information already in nice tutorials, these links will help direct you to understanding the connection between Processing and Arduino and the XBox controller.
+
+To learn about the communication between Arduino and Processing:
+https://learn.sparkfun.com/tutorials/connecting-arduino-to-processing
+
+To learn about game control plus:
+Tutorial 1: http://lagers.org.uk/gamecontrol/part1.html
+Tutorial 2: http://lagers.org.uk/gamecontrol/part2.html
+Tutorial 3: http://lagers.org.uk/gamecontrol/part3.html
+
+If you have any questions feel free to email Isaiah Rondeau and he will be happy to help you out. You can email him at
+### isaiahrondeau@gmail.com
