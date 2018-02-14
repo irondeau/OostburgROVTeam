@@ -1,6 +1,5 @@
 int serialVal = 30;
 int motorCtrlSpd;
-int directionalControl = 0;
 
 int motor1Direction;
 int motor2Direction;
@@ -118,7 +117,7 @@ void loop() {
     analogWrite(motor3PWM, motor3PWMVal);
 
     //BUMPERS
-  } else if(serialVal == 195) {
+  } else if(serialVal == 195) {                         //Value is 195
 
     motor4Direction = dirBoolLR1;
     digitalWrite(motor4DIR, motor4Direction);
@@ -130,7 +129,7 @@ void loop() {
     motor5PWMVal = 175;
     analogWrite(motor5PWM, motor5PWMVal);
     
-  } else if(serialVal == 196) {
+  } else if(serialVal == 196) {                         //Value is 196
 
     motor4Direction = dirBoolLR2;
     digitalWrite(motor4DIR, motor4Direction);
@@ -142,32 +141,32 @@ void loop() {
     motor5PWMVal = 175;
     analogWrite(motor5PWM, motor5PWMVal);
     
-  } else if(serialVal == 197) {
+  } else if(serialVal == 197) {                         //Value is 197
 
     analogWrite(motor4PWM, 0);
     analogWrite(motor5PWM, 0);
 
     //GRIPPER
-  } else if(serialVal == 198) {
+  } else if(serialVal == 198) {                         //Value is 198
 
     motor6Direction = LOW;
     digitalWrite(motor6DIR, motor6Direction);
     motor6PWMVal = 150;
     analogWrite(motor6PWM, motor6PWMVal);
     
-  } else if(serialVal == 199) {
+  } else if(serialVal == 199) {                         //Value is 199
     
     motor6Direction = HIGH;
     digitalWrite(motor6DIR, motor6Direction);
     motor6PWMVal = 150;
     analogWrite(motor6PWM, motor6PWMVal);
     
-  } else if(serialVal == 200) {
+  } else if(serialVal == 200) {                         //Value is 200
 
     analogWrite(motor6Direction, 0);
 
     //Multidirectional Control
-  } else if(serialVal >= 205 && serialVal <= 208) {
+  } else if(serialVal >= 205 && serialVal <= 208) {     //Value is between 205 and 208
 
     switch(serialVal) {
       
