@@ -1,33 +1,33 @@
+#include <Servo.h>
 int serialVal = 30;
 int motorCtrlSpd;
+
+int buzzer = 7;
+Servo gripper;
 
 int motor1Direction;
 int motor2Direction;
 int motor3Direction;
 int motor4Direction;
 int motor5Direction;
-int motor6Direction;
 
 int motor1PWMVal;
 int motor2PWMVal;
 int motor3PWMVal;
 int motor4PWMVal;
 int motor5PWMVal;
-int motor6PWMVal;
 
 int motor1DIR = 22;
 int motor2DIR = 24;
 int motor3DIR = 26;
 int motor4DIR = 28;
 int motor5DIR = 30;
-int motor6DIR = 32;
 
 int motor1PWM = 13;
 int motor2PWM = 12;
 int motor3PWM = 11;
 int motor4PWM = 10;
 int motor5PWM = 9;
-int motor6PWM = 8;
 
 int dirBoolFB1 = LOW;
 int dirBoolFB2 = HIGH;
@@ -46,8 +46,9 @@ void setup() {
   pinMode(motor4PWM, OUTPUT);
   pinMode(motor5DIR, OUTPUT);
   pinMode(motor5PWM, OUTPUT);
-  pinMode(motor6DIR, OUTPUT);
-  pinMode(motor6PWM, OUTPUT);
+
+  pinMode(buzzer, OUTPUT);
+  gripper.attach(6);
 
   Serial.begin(9600);
 }
@@ -149,21 +150,24 @@ void loop() {
     //GRIPPER
   } else if(serialVal == 198) {                         //Value is 198
 
-    motor6Direction = LOW;
-    digitalWrite(motor6DIR, motor6Direction);
-    motor6PWMVal = 150;
-    analogWrite(motor6PWM, motor6PWMVal);
+    gripper.write(90);
     
   } else if(serialVal == 199) {                         //Value is 199
     
-    motor6Direction = HIGH;
-    digitalWrite(motor6DIR, motor6Direction);
-    motor6PWMVal = 150;
-    analogWrite(motor6PWM, motor6PWMVal);
+    gripper.write(90);
     
   } else if(serialVal == 200) {                         //Value is 200
 
-    analogWrite(motor6Direction, 0);
+    gripper.write(90);
+
+    //BUZZER
+  } else if(serialVal == 201) {
+
+    tone(buzzer, 1000 );
+
+  } else if(serialVal == 202) {
+
+    noTone(buzzer);
 
     //Multidirectional Control
   } else if(serialVal >= 205 && serialVal <= 208) {     //Value is between 205 and 208
