@@ -1,9 +1,11 @@
 #include <Servo.h>
 int serialVal = 30;
-int motorCtrlSpd;
+int motorCtrlSpd = 7.96;
 
 int buzzer = 7;
 Servo gripper;
+int depthSensor = A0;
+float depthValue = 0;
 
 int motor1Direction;
 int motor2Direction;
@@ -48,6 +50,7 @@ void setup() {
   pinMode(motor5PWM, OUTPUT);
 
   pinMode(buzzer, OUTPUT);
+  pinMode(depthSensor, INPUT);
   gripper.attach(6);
 
   Serial.begin(9600);
@@ -58,7 +61,9 @@ void loop() {
     serialVal = Serial.read(); //Read the serial value from processing and set it to variable serialVal
   }
 
-  motorCtrlSpd = 7.96;
+  depthValue = analogRead(depthSensor);
+  depthValue /= 2.2375;
+  Serial.println(depthValue);
 
   //LEFT JOYSTICK
   if(serialVal <= 28 && serialVal >= 0) {               //Between values 0 and 28
@@ -150,20 +155,20 @@ void loop() {
     //GRIPPER
   } else if(serialVal == 198) {                         //Value is 198
 
-    gripper.write(90);
+    gripper.write(62);
     
   } else if(serialVal == 199) {                         //Value is 199
     
-    gripper.write(90);
+    gripper.write(122);
     
   } else if(serialVal == 200) {                         //Value is 200
 
-    gripper.write(90);
+    gripper.write(92);
 
     //BUZZER
   } else if(serialVal == 201) {
 
-    tone(buzzer, 1000 );
+    tone(buzzer, 1000);
 
   } else if(serialVal == 202) {
 

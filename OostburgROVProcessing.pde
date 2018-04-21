@@ -10,6 +10,7 @@ ControlDevice gpad;
 
 Serial myPort;
 String portName;
+String serialVal;
 int portNumber = 0;
 int limit = 4;
 
@@ -51,6 +52,9 @@ void sendAxisInput(String input, int offset) {
 }
 
 void draw() {
+  if(myPort.available() > 0) {
+    serialVal = myPort.readStringUntil('\n');
+  }
   
   if (gpad.getSlider("YLeftAxis").getValue() != 0) {
     sendAxisInput("YLeftAxis", 32);
