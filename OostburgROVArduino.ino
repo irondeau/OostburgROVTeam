@@ -5,7 +5,8 @@ int motorCtrlSpd = 7.96;
 int buzzer = 7;
 Servo gripper;
 int depthSensor = A0;
-float depthValue = 0;
+int depthValue = 0;
+int depthCount = 0;
 
 int motor1Direction;
 int motor2Direction;
@@ -48,7 +49,7 @@ void setup() {
   pinMode(motor4PWM, OUTPUT);
   pinMode(motor5DIR, OUTPUT);
   pinMode(motor5PWM, OUTPUT);
-
+  
   pinMode(buzzer, OUTPUT);
   pinMode(depthSensor, INPUT);
   gripper.attach(6);
@@ -57,13 +58,23 @@ void setup() {
 }
 
 void loop() {
-  if (Serial.available() > 0) {
+  if(Serial.available() > 0) {
     serialVal = Serial.read(); //Read the serial value from processing and set it to variable serialVal
   }
 
-  depthValue = analogRead(depthSensor);
-  depthValue /= 2.2375;
-  Serial.println(depthValue);
+  if(depthCount < 10000) {
+
+    depthCount++;
+    
+  } else {
+    
+    depthValue = analogRead(depthSensor);
+    depthValue = depthValue;
+    Serial.println(depthValue);
+
+    depthCount = 0;
+    
+  }
 
   //LEFT JOYSTICK
   if(serialVal <= 28 && serialVal >= 0) {               //Between values 0 and 28
@@ -163,7 +174,7 @@ void loop() {
     
   } else if(serialVal == 200) {                         //Value is 200
 
-    gripper.write(92);
+    gripper.write(94);
 
     //BUZZER
   } else if(serialVal == 201) {
@@ -194,13 +205,13 @@ void loop() {
 
         dirBoolFB1 = LOW;
         dirBoolFB2 = HIGH;
-        dirBoolLR1 = HIGH;
-        dirBoolLR2 = LOW;
+        dirBoolLR1 = LOW;
+        dirBoolLR2 = HIGH;
         
         break;
         
-      //EAST
-      case 206:
+      //WEST
+      case 208:
       
         motor1DIR = 30;
         motor2DIR = 28;
@@ -214,8 +225,8 @@ void loop() {
 
         dirBoolFB1 = HIGH;
         dirBoolFB2 = LOW;
-        dirBoolLR1 = HIGH;
-        dirBoolLR2 = LOW;
+        dirBoolLR1 = LOW;
+        dirBoolLR2 = HIGH;
         
         break;
 
@@ -234,13 +245,13 @@ void loop() {
 
         dirBoolFB1 = HIGH;
         dirBoolFB2 = LOW;
-        dirBoolLR1 = LOW;
-        dirBoolLR2 = HIGH;
+        dirBoolLR1 = HIGH;
+        dirBoolLR2 = LOW;
         
         break;
 
-      //WEST
-      case 208:
+      //EAST
+      case 206:
       
         motor1DIR = 28;
         motor2DIR = 30;
@@ -254,8 +265,8 @@ void loop() {
 
         dirBoolFB1 = LOW;
         dirBoolFB2 = HIGH;
-        dirBoolLR1 = LOW;
-        dirBoolLR2 = HIGH;
+        dirBoolLR1 = HIGH;
+        dirBoolLR2 = LOW;
         
         break;
 
