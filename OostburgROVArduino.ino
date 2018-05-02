@@ -49,7 +49,7 @@ void setup() {
   pinMode(motor4PWM, OUTPUT);
   pinMode(motor5DIR, OUTPUT);
   pinMode(motor5PWM, OUTPUT);
-
+  
   pinMode(buzzer, OUTPUT);
   pinMode(depthSensor, INPUT);
   gripper.attach(6);

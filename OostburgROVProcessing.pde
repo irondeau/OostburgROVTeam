@@ -79,6 +79,9 @@ void sendAxisInput(String input, int offset) {
 }
 
 void draw() {
+  if(myPort.available() > 0) {
+    serialVal = myPort.readStringUntil('\n');
+  }
   
   if(myPort.available() > 0) {
     
@@ -139,6 +142,22 @@ void draw() {
   } else {
     myPort.write(204);
   }
+  
+  float hat = gpad.getHat("DPad").getValue();
+  if (hat == 2.0) {
+    myPort.write(205);
+    println("205");
+  } else if (hat == 4.0) {
+    myPort.write(206);
+    println("206");
+  } else if (hat == 6.0) {
+    myPort.write(207);
+    println("207");
+  } else if (hat == 8.0) {
+    myPort.write(208);
+    println("208");
+  }
+  println(hat);
   
   float hat = gpad.getHat("DPad").getValue();
   if (hat == 2.0) {
