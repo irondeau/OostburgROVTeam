@@ -1,34 +1,36 @@
+#include <Servo.h>
 int serialVal = 30;
-int motorCtrlSpd;
-int directionalControl = 0;
+int motorCtrlSpd = 7.96;
+
+int buzzer = 7;
+Servo gripper;
+int depthSensor = A0;
+int depthValue = 0;
+int depthCount = 0;
 
 int motor1Direction;
 int motor2Direction;
 int motor3Direction;
 int motor4Direction;
 int motor5Direction;
-int motor6Direction;
 
 int motor1PWMVal;
 int motor2PWMVal;
 int motor3PWMVal;
 int motor4PWMVal;
 int motor5PWMVal;
-int motor6PWMVal;
 
 int motor1DIR = 22;
 int motor2DIR = 24;
 int motor3DIR = 26;
 int motor4DIR = 28;
 int motor5DIR = 30;
-int motor6DIR = 32;
 
 int motor1PWM = 13;
 int motor2PWM = 12;
 int motor3PWM = 11;
 int motor4PWM = 10;
 int motor5PWM = 9;
-int motor6PWM = 8;
 
 int dirBoolFB1 = LOW;
 int dirBoolFB2 = HIGH;
@@ -47,18 +49,32 @@ void setup() {
   pinMode(motor4PWM, OUTPUT);
   pinMode(motor5DIR, OUTPUT);
   pinMode(motor5PWM, OUTPUT);
-  pinMode(motor6DIR, OUTPUT);
-  pinMode(motor6PWM, OUTPUT);
+
+  pinMode(buzzer, OUTPUT);
+  pinMode(depthSensor, INPUT);
+  gripper.attach(6);
 
   Serial.begin(9600);
 }
 
 void loop() {
-  if (Serial.available() > 0) {
+  if(Serial.available() > 0) {
     serialVal = Serial.read(); //Read the serial value from processing and set it to variable serialVal
   }
 
-  motorCtrlSpd = 7.96;
+  if(depthCount < 10000) {
+
+    depthCount++;
+    
+  } else {
+    
+    depthValue = analogRead(depthSensor);
+    depthValue = depthValue;
+    Serial.println(depthValue);
+
+    depthCount = 0;
+    
+  }
 
   //LEFT JOYSTICK
   if(serialVal <= 28 && serialVal >= 0) {               //Between values 0 and 28
@@ -118,7 +134,7 @@ void loop() {
     analogWrite(motor3PWM, motor3PWMVal);
 
     //BUMPERS
-  } else if(serialVal == 195) {
+  } else if(serialVal == 195) {                         //Value is 195
 
     motor4Direction = dirBoolLR1;
     digitalWrite(motor4DIR, motor4Direction);
@@ -130,7 +146,7 @@ void loop() {
     motor5PWMVal = 175;
     analogWrite(motor5PWM, motor5PWMVal);
     
-  } else if(serialVal == 196) {
+  } else if(serialVal == 196) {                         //Value is 196
 
     motor4Direction = dirBoolLR2;
     digitalWrite(motor4DIR, motor4Direction);
@@ -142,33 +158,39 @@ void loop() {
     motor5PWMVal = 175;
     analogWrite(motor5PWM, motor5PWMVal);
     
-  } else if(serialVal == 197) {
+  } else if(serialVal == 197) {                         //Value is 197
 
     analogWrite(motor4PWM, 0);
+    analogWrite(motor5PWM, 0);
 
     //GRIPPER
-  } else if(serialVal == 198) {
+  } else if(serialVal == 198) {                         //Value is 198
 
-    motor6Direction = LOW;
-    digitalWrite(motor6DIR, motor6Direction);
-    motor6PWMVal = 150;
-    analogWrite(motor6PWM, motor6PWMVal);
+    gripper.write(62);
     
-  } else if(serialVal == 199) {
+  } else if(serialVal == 199) {                         //Value is 199
     
-    motor6Direction = HIGH;
-    digitalWrite(motor6DIR, motor6Direction);
-    motor6PWMVal = 150;
-    analogWrite(motor6PWM, motor6PWMVal);
+    gripper.write(122);
     
-  } else if(serialVal == 200) {
+  } else if(serialVal == 200) {                         //Value is 200
 
-    analogWrite(motor6Direction, 0);
+    gripper.write(94);
+
+    //BUZZER
+  } else if(serialVal == 201) {
+
+    tone(buzzer, 1000);
+
+  } else if(serialVal == 202) {
+
+    noTone(buzzer);
 
     //Multidirectional Control
-  } else if(serialVal >= 204 && serialVal <= 207) {
+  } else if(serialVal >= 205 && serialVal <= 208) {     //Value is between 205 and 208
 
     switch(serialVal) {
+      
+      //NORTH
       case 205:
       
         motor1DIR = 22;
@@ -187,8 +209,9 @@ void loop() {
         dirBoolLR2 = HIGH;
         
         break;
-
-      case 206:
+        
+      //WEST
+      case 208:
       
         motor1DIR = 30;
         motor2DIR = 28;
@@ -207,41 +230,43 @@ void loop() {
         
         break;
 
+      //SOUTH
       case 207:
       
-        motor1DIR = 22;
-        motor2DIR = 24;
-        motor4DIR = 28;
-        motor5DIR = 30;
+        motor1DIR = 24;
+        motor2DIR = 22;
+        motor4DIR = 30;
+        motor5DIR = 28;
         
-        motor1PWM = 13;
-        motor2PWM = 12;
-        motor4PWM = 10;
-        motor5PWM = 9;
+        motor1PWM = 12;
+        motor2PWM = 13;
+        motor4PWM = 9;
+        motor5PWM = 10;
 
-        dirBoolFB1 = LOW;
-        dirBoolFB2 = HIGH;
-        dirBoolLR1 = LOW;
-        dirBoolLR2 = HIGH;
+        dirBoolFB1 = HIGH;
+        dirBoolFB2 = LOW;
+        dirBoolLR1 = HIGH;
+        dirBoolLR2 = LOW;
         
         break;
 
-      case 208:
+      //EAST
+      case 206:
       
-        motor1DIR = 22;
-        motor2DIR = 24;
-        motor4DIR = 28;
-        motor5DIR = 30;
+        motor1DIR = 28;
+        motor2DIR = 30;
+        motor4DIR = 24;
+        motor5DIR = 22;
         
-        motor1PWM = 13;
-        motor2PWM = 12;
-        motor4PWM = 10;
-        motor5PWM = 9;
+        motor1PWM = 10;
+        motor2PWM = 9;
+        motor4PWM = 12;
+        motor5PWM = 13;
 
         dirBoolFB1 = LOW;
         dirBoolFB2 = HIGH;
-        dirBoolLR1 = LOW;
-        dirBoolLR2 = HIGH;
+        dirBoolLR1 = HIGH;
+        dirBoolLR2 = LOW;
         
         break;
 
