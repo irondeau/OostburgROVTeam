@@ -10,13 +10,22 @@ int depthSensor = A0;
 int depthValue = 0;
 int depthCount = 0; // TODO Make local timer not have here (make local variable) 
 
-int motorDirectionPins[] = {22, 24, 26, 28, 30};
-int motorPWMPins[] = {9, 10, 11, 12, 13};
+int motorDirectionPins[] = {22, 24, 26, 28, 30, 32};
+int motorPWMPins[] = {9, 10, 11, 12, 13, 8};
+
+//22 O
+//24 O
+//26 O
+//28 O
+//30 O
+//32 O
 
 int motorDirectionFB1 = LOW;
 int motorDirectionFB2 = HIGH;
 int motorDirectionLR1 = LOW;
 int motorDirectionLR2 = HIGH;
+
+//int testdir = 30; // Tests the dircection pin num
 
 void setup() {
 
@@ -68,7 +77,7 @@ void loop() {
     inputHigh = 0;
     outputLow = 0;
     outputHigh = 255;
-    
+    // motorDirectionPins[0]
     theFunction(serialVal, inputLow, inputHigh, outputLow, outputHigh, motorDirectionPins[0], motorPWMPins[0], motorDirectionFB1); 
 
       } else if(serialVal < 32) {
@@ -80,13 +89,13 @@ void loop() {
         inputHigh = 64;
         outputLow = 0;
         outputHigh = 255;
-        
+        // motorDirectionPins[0]
         theFunction(serialVal, inputLow, inputHigh, outputLow, outputHigh, motorDirectionPins[0], motorPWMPins[0], motorDirectionFB2);
         
         //Right Joystick
-      } else if(serialVal <= 28 && serialVal >= 0) {         //Between values 0 and 32
-        inputLow = 34;                                 //May have to reverse the input values 
-        inputHigh = 94;
+      } else if(serialVal <= 94 && serialVal >= 65) {         //Between values 0 and 32
+        inputLow = 94;                                 //May have to reverse the input values 
+        inputHigh = 65;
         outputLow = 0;
         outputHigh = 255;
     
@@ -94,7 +103,7 @@ void loop() {
 
       } else if(serialVal < 99) {
 
-        analogWrite(motorPWMPins[3], 0);
+        analogWrite(motorPWMPins[1], 0);
         
       } else if(serialVal <= 129) {
         inputLow = 99;                                 //May have to reverse the input values 
@@ -106,16 +115,18 @@ void loop() {
 
         //Triggers
       } else if(serialVal <= 160) {
-        inputLow = 130;                                 //May have to reverse the input values 
-        inputHigh = 160;
+        inputLow = 160;                                 //May have to reverse the input values 
+        inputHigh = 130;
         outputLow = 0;
         outputHigh = 255;
 
         theFunction(serialVal, inputLow, inputHigh, outputLow, outputHigh, motorDirectionPins[2], motorPWMPins[2], LOW);
+        theFunction(serialVal, inputLow, inputHigh, outputLow, outputHigh, motorDirectionPins[5], motorPWMPins[5], HIGH); //TODO May have to change (function may not run twice at the same time)
 
       } else if(serialVal <= 164) {
 
         analogWrite(motorPWMPins[2], 0);
+        analogWrite(motorPWMPins[5], 0);
         
       } else if(serialVal <= 194) {
         inputLow = 164;                                 //May have to reverse the input values 
@@ -124,6 +135,7 @@ void loop() {
         outputHigh = 255;
 
         theFunction(serialVal, inputLow, inputHigh, outputLow, outputHigh, motorDirectionPins[2], motorPWMPins[2], HIGH);
+        theFunction(serialVal, inputLow, inputHigh, outputLow, outputHigh, motorDirectionPins[5], motorPWMPins[5], LOW); //TODO May have to change (function may not run twice at the same time)
 
         //Bumpers
       } else if(serialVal == 195) {
@@ -147,35 +159,35 @@ void loop() {
         analogWrite(motorPWMPins[3], 0);
         analogWrite(motorPWMPins[4], 0);
       
-        //Rock Drop      
-      } else if(serialVal == 198 ) {
+        //Rock Drop   
+      } else if(serialVal == 201 ) {
 
-        rockDrop.write(0);
+        rockDrop.write(80);
         
-      } else if(serialVal == 199 ) {
+      } else if(serialVal == 202 ) {
 
-        rockDrop.write(0);
+        rockDrop.write(153);
 
         //Fish Fry
       } else if(serialVal == 200 ) {
 
         fishFry.write(0);
       
-      } else if(serialVal == 201 ) {
+      } else if(serialVal == 233 ) {
 
         fishFry.write(0);
 
         //Main Gripper
-      } else if(serialVal == 202) {
+      } else if(serialVal == 244) {
 
         mainGripper.write(0);
         
-      } else if(serialVal == 203) {
+      } else if(serialVal == 293) {
 
         mainGripper.write(0);
 
         //Multidirection Control
-      } else if(serialVal >= 205 && serialVal <= 208) {     //Value is between 205 and 208
+      } else if(serialVal >= 205 && serialVal <= 208) {     
 
     switch(serialVal) {
       
