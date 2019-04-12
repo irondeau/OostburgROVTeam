@@ -144,18 +144,18 @@ void loop() {
       } else if(serialVal == 195) {
         
         digitalWrite(motorDirectionPins[3], motorDirectionLR1);
-        analogWrite(motorPWMPins[3], 175);
+        analogWrite(motorPWMPins[3], 255);
 
         digitalWrite(motorDirectionPins[4], motorDirectionLR1);
-        analogWrite(motorPWMPins[4], 175);
+        analogWrite(motorPWMPins[4], 255);
         
       } else if(serialVal == 196) {
         
         digitalWrite(motorDirectionPins[3], motorDirectionLR2);
-        analogWrite(motorPWMPins[3], 175);
+        analogWrite(motorPWMPins[3], 255);
 
         digitalWrite(motorDirectionPins[4], motorDirectionLR2);
-        analogWrite(motorPWMPins[4], 175);
+        analogWrite(motorPWMPins[4], 255);
       
       } else if(serialVal == 197) {
         
@@ -170,16 +170,16 @@ void loop() {
       } else if(serialVal == 202) {
 
         rockDrop.write(153);
-/*
-        //Fish Fry
-      } else if(serialVal == 203 ) {
 
-        fishFry.write(0);
+        //Fish Fry
+      } else if(serialVal == 199) {
+
+        fishFry.write(100);
       
-      } else if(serialVal == 204 ) {
+      } else if(serialVal == 200) {
 
         fishFry.write(180);
-*/
+
         //Main Gripper
       } else if(serialVal == 203) {
 
