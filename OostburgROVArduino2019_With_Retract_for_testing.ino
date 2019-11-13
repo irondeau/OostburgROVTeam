@@ -45,7 +45,7 @@ void setup() {
   mainGripper.attach(2);
 
   mainGripper.write(166);
-  rockDrop.write(153);
+  rockDrop.write(150);
   
   Serial.begin(9600);
 }
@@ -175,7 +175,7 @@ void loop() {
         
       } else if(serialVal == 202) {
 
-        rockDrop.write(153);
+        rockDrop.write(150);
 
         //Fish Fry
       } else if(serialVal == 199) {
